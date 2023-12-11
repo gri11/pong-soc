@@ -54,7 +54,6 @@ module pong_text(
 		 ascii_code_win=0;
 		 ascii_code_rule=0;
 		 ascii_code_ball = 0;
-		 animate_logo = 0;
 		 
 			//logo text logic (64x128 char size)
 			logo_on= (pixel_x[9:6]>=3 && pixel_x[9:6]<=6 && pixel_y[8:7]==2);
