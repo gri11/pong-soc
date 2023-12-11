@@ -74,8 +74,6 @@ module pong_text(
 				4'd6: ascii_code_logo=7'h47; //G
 			endcase
 			
-			animate_logo = ~animate_logo
-			
 			//PLAYER 1 score text logic(16x32 char size)
 			score1_on =(pixel_x[9:8]==0 && pixel_y[8:5]==0);
 			row_addr_score1=pixel_y[4:1];
