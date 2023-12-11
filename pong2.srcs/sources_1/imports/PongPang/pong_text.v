@@ -222,7 +222,7 @@ module pong_text(
 		row_addr=0;
 		bit_column=0;
 		ascii_code=0;
-		rgb_text=12'h0FF; //background
+		rgb_text=12'hAAA; //background
 		if(!video_on) rgb_text=12'h000;
 //		else if(ball_on) begin
 //			rgb_text=font_bit? 12'hF00:rgb_text; //ball left text color
@@ -231,32 +231,32 @@ module pong_text(
 //			ascii_code=ascii_code_ball;
 //		end
 		if(score1_on) begin
-			rgb_text=font_bit? 12'hF00:rgb_text; //player 1 score text color
+			rgb_text=font_bit? 12'h5FA:rgb_text; //player 1 score text color
 			row_addr=row_addr_score1;
 			bit_column=bit_column_score1;
 			ascii_code=ascii_code_score1;
 		end
 		else if(score2_on) begin
-			rgb_text=font_bit? 12'hF00:rgb_text; //player 2 score text color
+			rgb_text=font_bit? 12'h58F:rgb_text; //player 2 score text color
 			row_addr=row_addr_score2;
 			bit_column=bit_column_score2;
 			ascii_code=ascii_code_score2;
 		end
 		
 		else if(rule_on) begin
-			rgb_text=font_bit? 12'hFFF:rgb_text; //rule text color
+			rgb_text=font_bit? 12'hAAA:rgb_text; //rule text color
 			row_addr=row_addr_rule;
 			bit_column=bit_column_rule;
 			ascii_code=ascii_code_rule;
 		end
 		else if(win_on) begin
-			rgb_text=font_bit? 12'h0F0:rgb_text; //game winner text color
+			rgb_text=font_bit? 12'hAAA:rgb_text; //game winner text color
 			row_addr=row_addr_win;
 			bit_column=bit_column_win;
 			ascii_code=ascii_code_win;
 		end
 		else if(logo_on) begin
-			rgb_text=font_bit? 12'hFF0:rgb_text; //logo text color
+			rgb_text=font_bit? 12'hAAA:rgb_text; //logo text color
 			row_addr=row_addr_logo;
 			bit_column=bit_column_logo;
 			ascii_code=ascii_code_logo;

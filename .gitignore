@@ -1,5 +1,9 @@
 pong2.cache
 pong2.hw
 pong2.ip_user_files
-pong2.runs
+pong2.runs/.jobs/*
+pong2.runs/impl_1/*
+pong2.runs/synth_1/*
 pong2.sim
+
+!pong2.runs/impl_1/system.bit

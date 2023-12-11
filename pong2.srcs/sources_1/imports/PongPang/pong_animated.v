@@ -18,11 +18,11 @@ module pong_animated
 					bar_2_XL=550, //left bar player 2
 					bar_2_XR=560, //right bar player 2
 					
-					bar_LENGTH=100, //bar length
+					bar_LENGTH=50, //bar length
 					bar_V=4, //bar velocity
 					
 					ball_DIAM=9, //ball diameter minus one
-					ball_V=3; //ball velocity
+					ball_V=2; //ball velocity
 
 					
 	 wire bar_1_on,bar_2_on,ball_box;
@@ -38,9 +38,9 @@ module pong_animated
 	 wire [11:0] bg_rgb, ball_rgb, bar_rgb;
 
     // assign object colors
-    assign bar_rgb = 12'h0F0;
-    assign ball_rgb = 12'h00F;
-    assign bg_rgb = 12'h0FF; 
+    assign bar_rgb = 12'hF28;
+    assign ball_rgb = 12'h000;
+    assign bg_rgb = 12'hAAA; // 0FF
 
 	 //display conditions
 	 assign bar_1_on= bar_1_XL<=pixel_x && pixel_x<=bar_1_XR && bar_1_top_q<=pixel_y && pixel_y<=(bar_1_top_q+bar_LENGTH);
