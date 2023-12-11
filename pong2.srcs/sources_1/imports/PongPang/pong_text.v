@@ -21,6 +21,12 @@ module pong_text(
 	 reg[4:0] col_temp;
      wire font_bit;
      
+     reg animate_logo;
+     
+     always @(posedge clk) begin
+        animate_logo = ~animate_logo;
+     end
+     
 	 //control logic for all text on the game
 	 always @* begin
 		 logo_on=0;
@@ -48,17 +54,27 @@ module pong_text(
 		 ascii_code_win=0;
 		 ascii_code_rule=0;
 		 ascii_code_ball = 0;
+		 animate_logo = 0;
 		 
 			//logo text logic (64x128 char size)
 			logo_on= (pixel_x[9:6]>=3 && pixel_x[9:6]<=6 && pixel_y[8:7]==2);
 			row_addr_logo=pixel_y[6:3];
 			bit_column_logo=pixel_x[5:3];
-			case(pixel_x[9:6])
+			case(pixel_x[9:6] && animate_logo)
 				4'd3: ascii_code_logo=7'h50; //P
-				4'd4: ascii_code_logo=7'h4f; //O
+				4'd4: ascii_code_logo=0; //
 				4'd5: ascii_code_logo=7'h4e; //N
+				4'd6: ascii_code_logo=0; //
+			endcase
+			
+			case(pixel_x[9:6] && !animate_logo)
+				4'd3: ascii_code_logo=0; //
+				4'd4: ascii_code_logo=7'h4f; //O
+				4'd5: ascii_code_logo=0; //
 				4'd6: ascii_code_logo=7'h47; //G
 			endcase
+			
+			animate_logo = ~animate_logo
 			
 			//PLAYER 1 score text logic(16x32 char size)
 			score1_on =(pixel_x[9:8]==0 && pixel_y[8:5]==0);
@@ -256,7 +272,7 @@ module pong_text(
 			ascii_code=ascii_code_win;
 		end
 		else if(logo_on) begin
-			rgb_text=font_bit? 12'hAAA:rgb_text; //logo text color
+			rgb_text=font_bit? 12'h46B:rgb_text; //logo text color
 			row_addr=row_addr_logo;
 			bit_column=bit_column_logo;
 			ascii_code=ascii_code_logo;
