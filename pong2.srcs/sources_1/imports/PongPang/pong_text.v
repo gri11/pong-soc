@@ -21,10 +21,16 @@ module pong_text(
 	 reg[4:0] col_temp;
      wire font_bit;
      
+     // logo animation logic
      reg animate_logo;
+     reg[7:0] logo_time=0;
      
      always @(posedge clk) begin
-        animate_logo = ~animate_logo;
+        animate_logo = (logo_time == 0) ? 0 : 1;
+        logo_time = logo_time + 1;
+        if (logo_time == 8'b1111_1111) begin
+            logo_time = 0;
+        end
      end
      
 	 //control logic for all text on the game
